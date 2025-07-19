@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getCoinList } from "../../services/cryptoApi";
 import CoinTable from "../modules/CoinTable";
+import Pagination from "../modules/Pagination";
 
 function HomePage() {
   const [coins, setCoins] = useState([]);
@@ -26,6 +27,7 @@ function HomePage() {
         <h1>Crypto App</h1>
       </header>
       <CoinTable coins={coins} isLoading={isLoading}/>
+      <Pagination />
       <footer><p>Developed with ❤️ by Diana!</p></footer>
     </div>
   );
