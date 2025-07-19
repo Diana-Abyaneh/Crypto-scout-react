@@ -8,7 +8,7 @@ function CoinTable({ coins, isLoading }) {
   return (
     <div className={styles.container}>
       {isLoading ? (
-        <BeatLoader color="#005effff"/>
+        <BeatLoader color="#290676a1"/>
       ) : (
         <table className={styles.table}>
           <thead>

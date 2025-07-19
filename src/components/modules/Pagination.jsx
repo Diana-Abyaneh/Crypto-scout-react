@@ -1,7 +1,6 @@
-import { useState } from "react";
+/* eslint-disable react/prop-types */
 
-function Pagination() {
-  const [page, setPage] = useState(1);
+function Pagination({page, setPage}) {
 
   const prevHandler = () => {
     if (page <= 1) return;
