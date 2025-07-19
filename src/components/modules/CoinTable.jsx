@@ -1,14 +1,15 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import { BeatLoader } from "react-spinners";
 import chartUp from "../../assets/chart-up.svg";
 import chartDown from "../../assets/chart-down.svg";
-import styles from "./CoinTable.module.css"
+import styles from "./CoinTable.module.css";
 
-function CoinTable({ coins, isLoading }) {
+function CoinTable({ coins, isLoading, currency }) {
   return (
     <div className={styles.container}>
       {isLoading ? (
-        <BeatLoader color="#290676a1"/>
+        <BeatLoader color="#290676a1" />
       ) : (
         <table className={styles.table}>
           <thead>
@@ -23,7 +24,7 @@ function CoinTable({ coins, isLoading }) {
           </thead>
           <tbody>
             {coins.map((coin) => (
-              <TableRow coin={coin} key={coin.id} />
+              <TableRow coin={coin} key={coin.id} currency={currency}/>
             ))}
           </tbody>
         </table>
@@ -43,7 +44,14 @@ const TableRow = ({
     total_volume,
     price_change_percentage_24h: price_change,
   },
+  currency
 }) => {
+  const currencyIcons = {
+    usd: "$",
+    eur: "€",
+    jpy: "¥",
+  };
+
   return (
     <tr>
       <td>
@@ -53,14 +61,15 @@ const TableRow = ({
         </div>
       </td>
       <td>{name}</td>
-      <td>${current_price.toLocaleString()}</td>
-      <td className={price_change > 0 ? styles.ascending : styles.descending}>{price_change.toFixed(2)}%</td>
+      <td>
+        {currencyIcons[currency] || "💰"} {current_price.toLocaleString()}
+      </td>{" "}
+      <td className={price_change > 0 ? styles.ascending : styles.descending}>
+        {price_change.toFixed(2)}%
+      </td>
       <td>{total_volume.toLocaleString()}</td>
       <td>
-        <img
-          src={price_change > 0 ? chartUp : chartDown}
-          alt="chart up/down"
-        />
+        <img src={price_change > 0 ? chartUp : chartDown} alt="chart up/down" />
       </td>
     </tr>
   );
