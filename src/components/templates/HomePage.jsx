@@ -22,10 +22,11 @@ function HomePage() {
   return (
     <div>
       <header>
+        <img src="../../../public/icons8-dollar-coin-64.png" alt="coin icon" />
         <h1>Crypto App</h1>
       </header>
       <CoinTable coins={coins} isLoading={isLoading}/>
-      <footer><p>Made by ME!🫶</p></footer>
+      <footer><p>Developed with ❤️ by Diana!</p></footer>
     </div>
   );
 }

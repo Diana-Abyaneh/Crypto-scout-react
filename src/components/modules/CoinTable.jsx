@@ -16,9 +16,9 @@ function CoinTable({ coins, isLoading }) {
               <th>Coin</th>
               <th>Name</th>
               <th>Price</th>
-              <th>24h</th>
+              <th>24h change</th>
               <th>Total volume</th>
-              <th></th>
+              <th>Graph</th>
             </tr>
           </thead>
           <tbody>
