@@ -21,7 +21,11 @@ function HomePage() {
 
   return (
     <div>
+      <header>
+        <h1>Crypto App</h1>
+      </header>
       <CoinTable coins={coins} isLoading={isLoading}/>
+      <footer><p>Made by ME!🫶</p></footer>
     </div>
   );
 }

@@ -1,5 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Sansation:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family:"Sansation", sans-serif;
   line-height: 1.5;
 }
 
@@ -21,4 +22,17 @@ body {
 a {
   text-decoration: inherit;
   color: inherit;
+}
+
+header {
+  background-color: #07076ea1;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+footer {
+  background-color: #07076ea1;
+  border-radius: 5px;
+  padding: 10px;
+  text-align: center;
 }
