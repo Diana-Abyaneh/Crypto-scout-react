@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { coinSearch } from "../../services/cryptoApi";
 import { BeatLoader } from "react-spinners";
+import styles from "./Search.module.css";
 
 function Search({ currency, setCurrency }) {
   const [text, setText] = useState("");
@@ -41,7 +42,7 @@ function Search({ currency, setCurrency }) {
   }, [text]);
 
   return (
-    <div>
+    <div className={styles.searchBox}>
       <input
         type="text"
         placeholder="Search here..."
@@ -58,20 +59,22 @@ function Search({ currency, setCurrency }) {
         <option value="eur">EUR</option>
         <option value="jpy">JPY</option>
       </select>
-      <section>
-        {isLoading ? (
-          <BeatLoader color="#290676a1" />
-        ) : (
-          <ul>
-            {coins.map((coin) => (
-              <li key={coin.id}>
-                <img src={coin.thumb} alt="coin thumbnail" />
-                <p>{coin.name}</p>
-              </li>
-            ))}
-          </ul>
-        )}
-      </section>
+      {(!!coins.length || isLoading) && (
+        <section className={styles.searchResults}>
+          {isLoading ? (
+            <BeatLoader color="#3d09ada1" />
+          ) : (
+            <ul>
+              {coins.map((coin) => (
+                <li key={coin.id}>
+                  <img src={coin.thumb} alt="coin thumbnail" />
+                  <p>{coin.name}</p>
+                </li>
+              ))}
+            </ul>
+          )}
+        </section>
+      )}
     </div>
   );
 }
