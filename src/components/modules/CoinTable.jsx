@@ -63,7 +63,7 @@ const TableRow = ({
       <td>{name}</td>
       <td>
         {currencyIcons[currency] || "💰"} {current_price.toLocaleString()}
-      </td>{" "}
+      </td>
       <td className={price_change > 0 ? styles.ascending : styles.descending}>
         {price_change.toFixed(2)}%
       </td>
