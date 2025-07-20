@@ -16,6 +16,7 @@
 }
 
 .searchBox select {
+    font-family: "Sansation";
     background-color: #2c077bcc;
     height: 50px;
     border: none;
