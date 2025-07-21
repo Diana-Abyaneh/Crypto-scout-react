@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getCoinList } from "../../services/cryptoApi";
+import { getCoinList, getChart } from "../../services/cryptoApi";
 import CoinTable from "../modules/CoinTable";
 import Pagination from "../modules/Pagination";
 import Search from "../modules/Search";
@@ -29,6 +29,24 @@ function HomePage() {
     getData();
   }, [page, currency]);
 
+  useEffect(() => {
+  const fetchChartOnCurrencyChange = async () => {
+    if (!chart) return;
+
+    try {
+      const res = await fetch(getChart(chart.coin.id, currency));
+      const json = await res.json();
+      setChart({ ...json, coin: chart.coin });
+    } catch (error) {
+      console.error("Error fetching chart data on currency change", error);
+      setChart(null);
+    }
+  };
+
+  fetchChartOnCurrencyChange();
+}, [currency]);
+
+
   return (
     <div>
       <header>
@@ -38,11 +56,11 @@ function HomePage() {
       <main>
       <Search currency={currency} setCurrency={setCurrency} />
       <CoinTable coins={coins} isLoading={isLoading} currency={currency} setChart={setChart}/>
-      {!!chart && <Chart chart={chart} setChart={setChart}/>}
+      {!!chart && <Chart chart={chart} setChart={setChart} currency={currency}/>}
       <Pagination page={page} setPage={setPage} />
       </main>
       <footer>
-        <p>Developed with ❤️ by Diana!</p>
+        <p>Developed with ❤️ by Diana Abyaneh!</p>
       </footer>
     </div>
   );

@@ -13,14 +13,22 @@ import {
 import { convertData } from "../../helpers/convertData";
 import styles from "./Chart.module.css";
 
-function Chart({ chart, setChart }) {
+function Chart({ chart, setChart, currency }) {
   const [type, setType] = useState("prices");
+  const data = convertData(chart, type);
 
-  const typeHandler = (event) => {
-    if (event.target.tagName === "BUTTON") {
-      const newType = event.target.innerText.toLowerCase().replace(" ", "_");
-      setType(newType);
-    }
+  const currencyIcons = {
+    usd: "$",
+    eur: "€",
+    jpy: "¥",
+  };
+  const dynCurrency = currencyIcons[currency];
+
+  const formatCurrency = (value) => {
+    if (value >= 1e9) return `${(value / 1e9).toFixed(1)}B`;
+    if (value >= 1e6) return `${(value / 1e6).toFixed(1)}M`;
+    if (value >= 1e3) return `${(value / 1e3).toFixed(1)}K`;
+    return value.toLocaleString();
   };
 
   return (
@@ -34,31 +42,48 @@ function Chart({ chart, setChart }) {
           <p>{chart.coin.name}</p>
         </div>
         <div className={styles.graph} style={{ height: "400px" }}>
-          <ChartComponent data={convertData(chart, type)} type={type} />
+          <ChartComponent
+            data={data}
+            type={type}
+            dynCurrency={dynCurrency}
+            formatCurrency={formatCurrency}
+          />
         </div>
-        <div className={styles.types} onClick={typeHandler}>
-          <button className={type === "prices" ? styles.selected : null}>
-            Prices
-          </button>
-          <button className={type === "market_caps" ? styles.selected : null}>
-            Market Caps
-          </button>
-          <button className={type === "total_volumes" ? styles.selected : null}>
-            Total Volumes
-          </button>
+        <div className={styles.types}>
+          {["Prices", "Market Caps", "Total Volumes"].map((btnType) => {
+            const lowerType = btnType.toLowerCase().replace(" ", "_");
+            return (
+              <button
+                key={btnType}
+                onClick={() => setType(lowerType)}
+                className={type === lowerType ? styles.selected : null}
+              >
+                {btnType}
+              </button>
+            );
+          })}
         </div>
         <div className={styles.details}>
           <div>
-            <p>Price:</p>
-            <span>${chart.coin.current_price.toLocaleString()}</span>
+            <p>Prices:</p>
+            <span>
+              {dynCurrency}
+              {chart.coin.current_price.toLocaleString()}
+            </span>
           </div>
           <div>
             <p>ATH:</p>
-            <span>${chart.coin.ath.toLocaleString()}</span>
+            <span>
+              {dynCurrency}
+              {chart.coin.ath.toLocaleString()}
+            </span>
           </div>
           <div>
             <p>Market Cap:</p>
-            <span>${chart.coin.market_cap.toLocaleString()}</span>
+            <span>
+              {dynCurrency}
+              {chart.coin.market_cap.toLocaleString()}
+            </span>
           </div>
         </div>
       </div>
@@ -68,38 +93,27 @@ function Chart({ chart, setChart }) {
 
 export default Chart;
 
-const ChartComponent = ({ data, type }) => (
+const ChartComponent = ({ data, type, dynCurrency, formatCurrency }) => (
   <ResponsiveContainer width="100%" height="100%">
     <LineChart data={data}>
-      <CartesianGrid stroke="#333" strokeDasharray="3 3" />
+      <CartesianGrid stroke="#05053fff" />
       <XAxis dataKey="date" hide />
       <YAxis
+        tick={{ fontSize: 12 }}
+        tickFormatter={(tick) => `${dynCurrency}${formatCurrency(tick)}`}
         domain={["auto", "auto"]}
-        tick={{ fill: "#fff", fontSize: 12 }}
-        tickFormatter={(value) => {
-          if (value === undefined || value === null) return "";
-          if (value >= 1e9) return (value / 1e9).toFixed(1) + "B";
-          if (value >= 1e6) return (value / 1e6).toFixed(1) + "M";
-          if (value >= 1e3) return (value / 1e3).toFixed(1) + "K";
-          return value.toLocaleString();
-        }}
       />
+
       <Tooltip
-        formatter={(value) => {
-          if (value === undefined || value === null) return "";
-          return `$${value.toLocaleString()}`;
-        }}
-        labelStyle={{ color: "#fff" }}
-        contentStyle={{ background: "#111", border: "none", borderRadius: "8px" }}
+        formatter={(value) => `${dynCurrency}${formatCurrency(value)}`}
       />
-      <Legend wrapperStyle={{ color: "#fff" }} />
+      <Legend />
       <Line
-        key={type}
         type="monotone"
         dataKey={type}
-        stroke="#0062ffff"
+        stroke="#002aff"
         strokeWidth={2}
-        dot={{ r: 3, stroke: "#00b4ff", strokeWidth: 1, fill: "#fff" }}
+        dot={false}
         activeDot={{ r: 6 }}
         isAnimationActive={true}
         animationDuration={1500}
