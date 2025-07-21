@@ -8,6 +8,7 @@
 }  
 
 .pagination button {
+    font-family: "Sansation";
     width: 80px;
     background-color: #290676a1;
     color: white;
@@ -24,6 +25,7 @@
     width: 25px;
     text-align: center;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 .disabled {
