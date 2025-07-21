@@ -32,7 +32,7 @@ function HomePage() {
   return (
     <div>
       <header>
-        <img src="../../../public/icons8-dollar-coin-64.png" alt="coin icon" />
+        <img src="../../../icons8-dollar-coin-64.png" alt="coin icon" />
         <h1>Crypto App</h1>
       </header>
       <main>

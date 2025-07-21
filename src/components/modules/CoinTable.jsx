@@ -3,6 +3,7 @@
 import { BeatLoader } from "react-spinners";
 import chartUp from "../../assets/chart-up.svg";
 import chartDown from "../../assets/chart-down.svg";
+import { getChart } from "../../services/cryptoApi";
 import styles from "./CoinTable.module.css";
 
 function CoinTable({ coins, isLoading, currency, setChart }) {
@@ -42,6 +43,7 @@ export default CoinTable;
 
 const TableRow = ({
   coin: {
+    id,
     image,
     name,
     symbol,
@@ -58,8 +60,14 @@ const TableRow = ({
     jpy: "¥",
   };
 
-  const showHandler = () => {
-    setChart(true);
+  const showHandler = async () => {
+    try {
+      const res = await fetch(getChart(id));
+      const json = await res.json();
+      setChart(json);
+    } catch (error) {
+      setChart(null);
+    }
   };
 
   return (
