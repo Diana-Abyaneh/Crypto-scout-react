@@ -51,7 +51,7 @@ function HomePage() {
     <div>
       <header>
         <img src="../../../icons8-dollar-coin-64.png" alt="coin icon" />
-        <h1>Crypto App</h1>
+        <h1>Crypto Scout</h1>
       </header>
       <main>
       <Search currency={currency} setCurrency={setCurrency} setChart={setChart}/>
