@@ -55,6 +55,11 @@
     font-weight: 700;
 }
 
+.name p span {
+    font-weight: 400;
+    font-size: 1rem;
+}
+
 .types{
     margin-top: 30px;
 }

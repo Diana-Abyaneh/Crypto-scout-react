@@ -10,6 +10,11 @@ const coinSearch = (query) => {
 };
 
 const getChart = (id, currency = "usd") =>
-  `https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=${currency}&days=30`;
+  `https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=${currency}&days=7`;
 
-export { getCoinList, coinSearch, getChart };
+const getCoin = (id) => {
+  return `${BASE_URL}/coins/${id}?x_cg_demo_api_key=${API_KEY}`;
+};
+
+export { getCoinList, coinSearch, getChart, getCoin };
+

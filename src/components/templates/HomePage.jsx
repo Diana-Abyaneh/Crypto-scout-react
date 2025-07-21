@@ -54,7 +54,7 @@ function HomePage() {
         <h1>Crypto App</h1>
       </header>
       <main>
-      <Search currency={currency} setCurrency={setCurrency} />
+      <Search currency={currency} setCurrency={setCurrency} setChart={setChart}/>
       <CoinTable coins={coins} isLoading={isLoading} currency={currency} setChart={setChart}/>
       {!!chart && <Chart chart={chart} setChart={setChart} currency={currency}/>}
       <Pagination page={page} setPage={setPage} />

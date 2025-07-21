@@ -39,7 +39,7 @@ function Chart({ chart, setChart, currency }) {
       <div className={styles.chart}>
         <div className={styles.name}>
           <img src={chart.coin.image} alt={chart.coin.name} />
-          <p>{chart.coin.name}</p>
+          <p>{chart.coin.name} <span>(Last 7 Days Chart)</span></p>
         </div>
         <div className={styles.graph} style={{ height: "400px" }}>
           <ChartComponent

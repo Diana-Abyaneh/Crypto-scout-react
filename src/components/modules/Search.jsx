@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
-import { coinSearch } from "../../services/cryptoApi";
+import { coinSearch, getChart, getCoin } from "../../services/cryptoApi";
 import { BeatLoader } from "react-spinners";
 import styles from "./Search.module.css";
 
-function Search({ currency, setCurrency }) {
+function Search({ currency, setCurrency, setChart }) {
   const [text, setText] = useState("");
   const [coins, setCoins] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -20,26 +20,53 @@ function Search({ currency, setCurrency }) {
 
     const search = async () => {
       try {
-        const res = await fetch(coinSearch(text), {
-          signal: controller.signal,
-        });
+        const res = await fetch(coinSearch(text), { signal: controller.signal });
         const json = await res.json();
-        console.log(json);
         if (json.coins) {
           setCoins(json.coins);
           setIsLoading(false);
         } else {
           alert(json.status.error_message);
+          setIsLoading(false);
         }
       } catch (error) {
-        if (error.name != "AbortError") alert(error.message);
+        if (error.name !== "AbortError") alert(error.message);
+        setIsLoading(false);
       }
     };
+
     setIsLoading(true);
     search();
 
     return () => controller.abort();
   }, [text]);
+
+  const handleCoinClick = async (id) => {
+    try {
+      const [chartRes, coinRes] = await Promise.all([
+        fetch(getChart(id, currency)),
+        fetch(getCoin(id))
+      ]);
+      const chartData = await chartRes.json();
+      const coinData = await coinRes.json();
+
+      const coin = {
+        id: coinData.id,
+        name: coinData.name,
+        image: coinData.image.large,
+        current_price: coinData.market_data.current_price[currency],
+        ath: coinData.market_data.ath[currency],
+        market_cap: coinData.market_data.market_cap[currency],
+      };
+
+      setChart({ ...chartData, coin });
+      setText("");
+      setCoins([]);
+    } catch (error) {
+      alert("Failed to fetch coin details.");
+      console.error(error);
+    }
+  };
 
   return (
     <div className={styles.searchBox}>
@@ -50,8 +77,6 @@ function Search({ currency, setCurrency }) {
         onChange={(e) => setText(e.target.value)}
       />
       <select
-        name=""
-        id=""
         value={currency}
         onChange={(e) => setCurrency(e.target.value)}
       >
@@ -66,8 +91,8 @@ function Search({ currency, setCurrency }) {
           ) : (
             <ul>
               {coins.map((coin) => (
-                <li key={coin.id}>
-                  <img src={coin.thumb} alt="coin thumbnail" />
+                <li key={coin.id} onClick={() => handleCoinClick(coin.id)}>
+                  <img src={coin.thumb} alt={coin.name} />
                   <p>{coin.name}</p>
                 </li>
               ))}
