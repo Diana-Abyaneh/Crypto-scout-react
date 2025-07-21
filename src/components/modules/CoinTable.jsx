@@ -41,8 +41,8 @@ function CoinTable({ coins, isLoading, currency, setChart }) {
 
 export default CoinTable;
 
-const TableRow = ({
-  coin: {
+const TableRow = ({ coin, currency, setChart }) => {
+  const {
     id,
     image,
     name,
@@ -50,21 +50,20 @@ const TableRow = ({
     current_price,
     total_volume,
     price_change_percentage_24h: price_change,
-  },
-  currency,
-  setChart,
-}) => {
+  } = coin;
   const currencyIcons = {
     usd: "$",
     eur: "€",
     jpy: "¥",
   };
 
+  const dynCurrency = currencyIcons[currency];
+
   const showHandler = async () => {
     try {
       const res = await fetch(getChart(id));
       const json = await res.json();
-      setChart(json);
+      setChart({ ...json, coin });
     } catch (error) {
       setChart(null);
     }
@@ -80,7 +79,7 @@ const TableRow = ({
       </td>
       <td>{name}</td>
       <td>
-        {currencyIcons[currency] || "💰"} {current_price.toLocaleString()}
+        {dynCurrency} {current_price.toLocaleString()}
       </td>
       <td className={price_change > 0 ? styles.ascending : styles.descending}>
         {price_change.toFixed(2)}%
