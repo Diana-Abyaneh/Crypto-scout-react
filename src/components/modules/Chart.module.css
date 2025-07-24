@@ -1,100 +1,108 @@
 .container {
-    font-family: "Sansation";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    backdrop-filter: blur(3px);
+  font-family: "Sansation";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(3px);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-x;
 }
 
+
 .cross {
-    display: inline-block;
-    font-size: 1.5rem;
-    font-weight: 700;
-    background-color: #d33636;
-    color: white;
-    width: 30px;
-    height: 30px;
-    line-height: 30px;
-    text-align: center;
-    margin: 30px 0 0 30px;
-    border-radius: 5px;
-    cursor: pointer;
+  display: inline-block;
+  font-size: 1.5rem;
+  font-weight: 700;
+  background-color: #d33636;
+  color: white;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  margin: 30px 0 0 30px;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .chart {
-    width: 800px;
-    margin: auto;
-    padding: 20px;
-    margin-top: 10px;
-    background-color: #2c077bbe;
-    border: 2px solid #31068c;
-    border-radius: 20px;
+  width: 800px;
+  margin: auto;
+  padding: 20px;
+  margin-top: 10px;
+  background-color: #2c077bbe;
+  border: 2px solid #31068c;
+  border-radius: 20px;
+  display: block;
+  overflow-x: scroll;
 }
+
 
 .graph {
-    width: 760px;
-    height: 300px;
+  min-width: 700px;
+  height: 400px;
 }
 
+
 .name {
-    display: flex;
-    align-items: center;
-    margin: 0 10px 30px;
+  display: flex;
+  align-items: center;
+  margin: 0 10px 30px;
 }
 
 .name img {
-    width: 40px;
-    height: 40px;
-    margin-right: 20px;
+  width: 40px;
+  height: 40px;
+  margin-right: 20px;
 }
 
 .name p {
-    font-size: 1.5rem;
-    font-weight: 700;
+  font-size: 1.5rem;
+  font-weight: 700;
 }
 
 .name p span {
-    font-weight: 400;
-    font-size: 1rem;
+  font-weight: 400;
+  font-size: 1rem;
 }
 
-.types{
-    margin-top: 30px;
+.types {
+  margin-top: 30px;
 }
 
 .types button {
-    font-family: "Sansation";
-    margin: 10px 20px;
-    background-color: #002aff;
-    border: 1px solid #05166b;
-    color: #ffffff;
-    font-size: 1rem;
-    padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
+  font-family: "Sansation";
+  margin: 10px 20px;
+  background-color: #002aff;
+  border: 1px solid #05166b;
+  color: #ffffff;
+  font-size: 1rem;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .types .selected {
-    background-color: #190546;
+  background-color: #190546;
 }
 
 .details {
-    display: flex;
-    justify-content: space-between;
-    margin: 30px 20px 0;   
+  display: flex;
+  justify-content: space-between;
+  margin: 30px 20px 0;
 }
 
 .details div {
-    display: flex;
-    font-size: 1rem;
+  display: flex;
+  font-size: 1rem;
 }
 
-.details p{
-    margin-right: 7px;
-    color: #007bff;
-    font-weight: 700;
+.details p {
+  margin-right: 7px;
+  color: #007bff;
+  font-weight: 700;
 }
 
 .recharts-y-axis .recharts-cartesian-axis-tick-value {

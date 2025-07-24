@@ -39,16 +39,19 @@ function Chart({ chart, setChart, currency }) {
       <div className={styles.chart}>
         <div className={styles.name}>
           <img src={chart.coin.image} alt={chart.coin.name} />
-          <p>{chart.coin.name} <span>(Last 7 Days Chart)</span></p>
+          <p>
+            {chart.coin.name} <span>(Last 7 Days Chart)</span>
+          </p>
         </div>
-        <div className={styles.graph} style={{ height: "400px" }}>
-          <ChartComponent
-            data={data}
-            type={type}
-            dynCurrency={dynCurrency}
-            formatCurrency={formatCurrency}
-          />
-        </div>
+          <div className={styles.graph}>
+            <ChartComponent
+              data={data}
+              type={type}
+              dynCurrency={dynCurrency}
+              formatCurrency={formatCurrency}
+            />
+          </div>
+
         <div className={styles.types}>
           {["Prices", "Market Caps", "Total Volumes"].map((btnType) => {
             const lowerType = btnType.toLowerCase().replace(" ", "_");
