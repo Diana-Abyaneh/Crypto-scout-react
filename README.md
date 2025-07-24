@@ -58,7 +58,7 @@ This app uses CoinGecko, a public cryptocurrency API to fetch exchange rates and
 
 ### 🌐 Live Demo
 
-🚀 [Try it here](https://crypto-scout.vercel.app)
+🚀 [Try it here](https://crypto-scout-react.vercel.app/)
 
 ---
 
