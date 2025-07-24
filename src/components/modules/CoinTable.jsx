@@ -61,7 +61,7 @@ const TableRow = ({ coin, currency, setChart }) => {
 
   const showHandler = async () => {
     try {
-      const res = await fetch(getChart(id));
+      const res = await fetch(getChart(id, currency));
       const json = await res.json();
       setChart({ ...json, coin });
     } catch (error) {
