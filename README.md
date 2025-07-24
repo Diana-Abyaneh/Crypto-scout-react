@@ -46,6 +46,7 @@ npm install
 npm run dev
 ```
 
+---
 ### 🔐 API Configuration
 
 This app uses CoinGecko, a public cryptocurrency API to fetch exchange rates and market data.
@@ -57,10 +58,10 @@ This app uses CoinGecko, a public cryptocurrency API to fetch exchange rates and
 
 📸 Preview
 
-![Screenshot](screenshots/screenshot(1).png)
-![Screenshot](screenshots/screenshot(2).png)
-![Screenshot](screenshots/screenshot(3).png)
-![Screenshot](screenshots/screenshot(4).png)
+![Screenshot](./screenshots/screenshot%20(1).png)
+![Screenshot](./screenshots/screenshot%20(2).png)
+![Screenshot](./screenshots/screenshot%20(3).png)
+![Screenshot](./screenshots/screenshot%20(4).png)
 
 ⸻
 
