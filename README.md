@@ -54,17 +54,17 @@ This app uses CoinGecko, a public cryptocurrency API to fetch exchange rates and
  • ⚠️ However, CoinGecko has rate limits. If you send too many requests in a short period, the API may temporarily block you and return error responses.
  • 🧠 To avoid this, try to minimize unnecessary requests.
 
-⸻
+---
 
-📸 Preview
+### 📸 Preview
 
-![Screenshot](./screenshots/screenshot%20(1).png)
 ![Screenshot](./screenshots/screenshot%20(2).png)
 ![Screenshot](./screenshots/screenshot%20(3).png)
 ![Screenshot](./screenshots/screenshot%20(4).png)
+![Screenshot](./screenshots/screenshot%20(1).png)
 
-⸻
+---
 
-✍️ Author
+### ✍️ Author
 
 Diana Abyaneh
