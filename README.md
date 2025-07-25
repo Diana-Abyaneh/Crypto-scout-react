@@ -10,7 +10,7 @@ A responsive React application that allows users to convert between different cr
 - Convert amounts between selected currencies  
 - Search functionality  
 - Last 7 days change chart for prices, market caps, and total volume  
-- Automatic or manual rate updates (based on implementation)  
+- Supports manual rate updates only (users can refresh data by interaction)
 - Built with functional components and React hooks like useEffect and useState  
 - Clean and user-friendly interface  
 
